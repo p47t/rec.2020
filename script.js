@@ -130,6 +130,39 @@ function drawRec2020Triangle() {
     drawPoint(rec2020.white.x, rec2020.white.y, 'white', 'D65');
 }
 
+// sRGB / Rec.709 Primaries
+const srgb = {
+    red: { x: 0.64, y: 0.33 },
+    green: { x: 0.30, y: 0.60 },
+    blue: { x: 0.15, y: 0.06 },
+    white: { x: 0.3127, y: 0.3290 } // D65
+};
+
+function drawSrgbTriangle() {
+    ctx.beginPath();
+    ctx.strokeStyle = '#aaa'; // Grey for sRGB
+    ctx.setLineDash([5, 5]); // Dashed line to distinguish
+    ctx.lineWidth = 2;
+
+    ctx.moveTo(mapX(srgb.red.x), mapY(srgb.red.y));
+    ctx.lineTo(mapX(srgb.green.x), mapY(srgb.green.y));
+    ctx.lineTo(mapX(srgb.blue.x), mapY(srgb.blue.y));
+    ctx.closePath();
+
+    ctx.stroke();
+    ctx.setLineDash([]); // Reset dash
+
+    // Draw Primaries (smaller or different style?)
+    // Let's just label the triangle corners if needed, or rely on the lines.
+    // Maybe small points?
+    /*
+    drawPoint(srgb.red.x, srgb.red.y, '#f88', 'sR');
+    drawPoint(srgb.green.x, srgb.green.y, '#8f8', 'sG');
+    drawPoint(srgb.blue.x, srgb.blue.y, '#88f', 'sB');
+    */
+    // User asked for "rectangle", but it's a triangle. I'll stick to triangle as it's correct.
+}
+
 function drawPoint(x, y, color, label) {
     const px = mapX(x);
     const py = mapY(y);
@@ -257,6 +290,7 @@ function init() {
     drawGrid();
     drawSpectralLocus();
     drawRec2020Triangle();
+    drawSrgbTriangle();
 }
 
 // --- Interaction & Color Logic ---
@@ -318,7 +352,7 @@ function updateColorDisplay(x, y) {
     // Check if out of sRGB gamut
     let isOutOfGamut = false;
     const srgb = linearSrgb.map(v => {
-        if (v < 0 || v > 1) isOutOfGamut = true;
+        if (v < 0) isOutOfGamut = true;
         // Clamp for display
         const clamped = Math.max(0, Math.min(1, v));
         return Math.round(gammaCorrect(clamped) * 255);
