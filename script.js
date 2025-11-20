@@ -389,6 +389,20 @@ canvas.addEventListener('mousemove', (e) => {
     const y = unmapY(py);
 
     // Optional: Show coordinates on hover near cursor or just change cursor
+    const tooltip = document.getElementById('tooltip');
+    if (tooltip) {
+        tooltip.style.display = 'block';
+        tooltip.style.left = (e.clientX + 15) + 'px';
+        tooltip.style.top = (e.clientY + 15) + 'px';
+        tooltip.textContent = `x: ${x.toFixed(4)}, y: ${y.toFixed(4)}`;
+    }
+});
+
+canvas.addEventListener('mouseleave', () => {
+    const tooltip = document.getElementById('tooltip');
+    if (tooltip) {
+        tooltip.style.display = 'none';
+    }
 });
 
 init();
