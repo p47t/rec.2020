@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rec.2020 Color Space Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Rec.2020 Color Space</h1>
+            <p>Interactive CIE 1931 Chromaticity Diagram</p>
+        </header>
+        
+        <main>
+            <div class="canvas-wrapper">
+                <canvas id="chromaticityCanvas" width="600" height="650"></canvas>
+            </div>
+            
+            <aside class="info-panel">
+                <div class="color-preview" id="colorPreview"></div>
+                <div class="data-display">
+                    <div class="data-group">
+                        <label>CIE 1931 xy</label>
+                        <span id="xyCoords">x: -, y: -</span>
+                    </div>
+                    <div class="data-group">
+                        <label>Rec.2020 RGB (Linear)</label>
+                        <span id="rgbRec2020">R: -, G: -, B: -</span>
+                    </div>
+                    <div class="data-group">
+                        <label>sRGB (Display)</label>
+                        <span id="rgbSrgb">R: -, G: -, B: -</span>
+                    </div>
+                    <div class="status-message" id="statusMessage">Hover over the diagram</div>
+                </div>
+            </aside>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
