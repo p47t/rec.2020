@@ -48,10 +48,10 @@ header p {
 
 main {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     gap: 2rem;
     justify-content: center;
-    align-items: flex-start;
+    align-items: center;
 }
 
 .canvas-wrapper {
@@ -69,8 +69,8 @@ canvas {
 }
 
 .info-panel {
-    flex: 1;
-    min-width: 300px;
+    width: 100%;
+    max-width: 900px;
     background-color: var(--card-bg);
     padding: 1.5rem;
     border-radius: 12px;

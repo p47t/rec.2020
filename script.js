@@ -38,9 +38,9 @@ const spectralLocus = [
 
 // Drawing Constants
 const PADDING = 50;
-const SCALE = 500;
+const SCALE = 900;
 const OFFSET_X = 50;
-const OFFSET_Y = 600;
+const OFFSET_Y = 900;
 
 function mapX(x) {
     return OFFSET_X + x * SCALE;
@@ -113,7 +113,7 @@ function drawSpectralLocus() {
 
 function drawRec2020Triangle() {
     ctx.beginPath();
-    ctx.strokeStyle = '#00ff00'; // Green for Rec.2020
+    ctx.strokeStyle = '#000000'; // Green for Rec.2020
     ctx.lineWidth = 2;
 
     ctx.moveTo(mapX(rec2020.red.x), mapY(rec2020.red.y));
@@ -139,9 +139,20 @@ function drawPoint(x, y, color, label) {
     ctx.fillStyle = color;
     ctx.fill();
 
+    // Add stroke for visibility (especially for white point)
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
     if (label) {
-        ctx.fillStyle = '#fff';
         ctx.font = '12px Inter';
+
+        // Add text outline for visibility
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.strokeText(label, px + 8, py - 8);
+
+        ctx.fillStyle = '#fff';
         ctx.fillText(label, px + 8, py - 8);
     }
 }
