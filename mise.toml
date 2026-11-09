@@ -1,0 +1,19 @@
+[tools]
+node = "26"
+wrangler = "latest"
+
+[tasks.build]
+description = "Build HTML app with Vite"
+run = "npm run build"
+
+[tasks.dev]
+description = "Start Vite development server"
+run = "npm run dev"
+
+[tasks.preview]
+description = "Preview production build with Vite"
+run = "npm run preview"
+
+[tasks.deploy]
+description = "Build and deploy to Cloudflare Workers"
+run = "npm run deploy"

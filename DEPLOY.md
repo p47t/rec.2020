@@ -1,40 +1,51 @@
 # Deployment Guide
 
-This project is a static web application consisting of HTML, CSS, and JavaScript files. You can deploy it using any static site hosting service.
+This project is a static web application built using **Vite** and deployed to **Cloudflare Workers** using **mise** for managing development dependencies and tasks.
 
-## Option 1: GitHub Pages (Recommended if using GitHub)
+## Cloudflare Workers (Primary)
 
-1.  Push this repository to GitHub.
-2.  Go to the repository **Settings**.
-3.  Navigate to the **Pages** section.
-4.  Under **Source**, select `Deploy from a branch`.
-5.  Select your main branch (e.g., `main` or `master`) and the `/ (root)` folder.
-6.  Click **Save**.
-7.  Your site will be live at `https://<username>.github.io/<repo-name>/`.
+### Prerequisites
 
-## Option 2: Netlify (Drag & Drop)
+Ensure you have [mise](https://mise.jdx.dev) installed.
 
-1.  Go to [Netlify](https://www.netlify.com/).
-2.  Log in or sign up.
-3.  Drag and drop the project folder (containing `index.html`) into the "Sites" area on your dashboard.
-4.  Netlify will automatically deploy the site and give you a URL.
+1. Install project tools:
+   ```bash
+   mise install
+   npm install
+   ```
 
-## Option 3: Vercel
+2. Start the development server:
+   ```bash
+   mise run dev
+   ```
 
-1.  Install Vercel CLI: `npm i -g vercel`
-2.  Run `vercel` in the project directory.
-3.  Follow the prompts (mostly default settings).
-4.  Your site will be deployed instantly.
+3. Build the static assets:
+   ```bash
+   mise run build
+   ```
 
-## Option 4: Local Testing
+4. Preview the production build locally:
+   ```bash
+   mise run preview
+   ```
 
-To run the site locally, you can use a simple HTTP server.
+5. Deploy to Cloudflare Workers:
+   ```bash
+   mise run deploy
+   ```
 
-**Using Python:**
-```bash
-python3 -m http.server 8000
-```
-Then open `http://localhost:8000` in your browser.
+Deployed Worker: [https://rec-2020.simplypatrick.workers.dev](https://rec-2020.simplypatrick.workers.dev)
 
-**Using VS Code:**
-Install the "Live Server" extension and click "Go Live" in the status bar.
+---
+
+## Alternative Options
+
+### Option 2: GitHub Pages
+1. Push this repository to GitHub.
+2. Go to repository **Settings** -> **Pages**.
+3. Under **Build and deployment**, configure GitHub Actions with Vite, or deploy `dist` to GitHub Pages.
+
+### Option 3: Netlify / Vercel
+Connect your repository and set:
+- Build command: `npm run build`
+- Output directory: `dist`
